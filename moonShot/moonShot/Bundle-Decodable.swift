@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Bundle {
-    func decode(_ file: String) -> [Astronaut] {
+    func decode<T: Codable>(_ file: String) -> T {
         
         // search the file and make a url
         guard let url = self.url(forResource: file, withExtension: nil) else{
@@ -24,31 +24,10 @@ extension Bundle {
         // decode that file
         let decoder = JSONDecoder()
         
-        guard let loaded = try? decoder.decode([Astronaut].self, from: data) else {
+        guard let loaded = try? decoder.decode(T.self, from: data) else {
             fatalError("fialed to decode \(file) from bundle")
         }
         return loaded
     }
     
-}
-
-extension Bundle {
-    func decodeMission(_ file: String) -> [Mission]{
-        
-        guard let url = self.url(forResource: file, withExtension: nil) else {
-            fatalError("failed to locate \(file) in the bundle")
-        }
-        
-        guard let data = try? Data(contentsOf: url) else {
-            fatalError("failed to load \(file) in the bundle")
-        }
-        
-        let decoder = JSONDecoder()
-        
-        guard let loaded = try? decoder.decode([Mission].self, from: data) else {
-            fatalError("failed to decode the \(file) in the bundle")
-        }
-        
-        return loaded
-    }
 }
