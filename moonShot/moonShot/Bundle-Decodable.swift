@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+// extension for load JSON into an array of structs
+
 extension Bundle {
     func decode<T: Codable>(_ file: String) -> T {
         
@@ -21,7 +23,7 @@ extension Bundle {
             fatalError("failed to load \(file) from bundle")
         }
         
-        // decode that file
+        // decode that file from JSON
         let decoder = JSONDecoder()
         
         guard let loaded = try? decoder.decode(T.self, from: data) else {
