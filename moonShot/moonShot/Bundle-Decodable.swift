@@ -31,3 +31,24 @@ extension Bundle {
     }
     
 }
+
+extension Bundle {
+    func decodeMission(_ file: String) -> [Mission]{
+        
+        guard let url = self.url(forResource: file, withExtension: nil) else {
+            fatalError("failed to locate \(file) in the bundle")
+        }
+        
+        guard let data = try? Data(contentsOf: url) else {
+            fatalError("failed to load \(file) in the bundle")
+        }
+        
+        let decoder = JSONDecoder()
+        
+        guard let loaded = try? decoder.decode([Mission].self, from: data) else {
+            fatalError("failed to decode the \(file) in the bundle")
+        }
+        
+        return loaded
+    }
+}
