@@ -14,14 +14,14 @@ struct ContentView: View {
     
     var body: some View {
         
-        NavigationView {
+       NavigationView {
             List(missions) { mission in
                 NavigationLink(destination: Text("Detail view")) {
                     Image(mission.image)
                         .resizable()
-                        .scaleToFit()
+                        .aspectRatio(contentMode: .fit)
                         .frame(width: 44, height: 44)
-
+                
                     VStack(alignment: .leading) {
                         Text(mission.displayName)
                             .font(.headline)
