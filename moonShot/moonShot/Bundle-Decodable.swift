@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-// extension for load JSON into an array of structs
+// extension for decode JSON into an array of structs
 
 extension Bundle {
     func decode<T: Codable>(_ file: String) -> T {

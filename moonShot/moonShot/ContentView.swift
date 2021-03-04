@@ -14,22 +14,22 @@ struct ContentView: View {
     
     var body: some View {
         
-       NavigationView {
-            List(missions) { mission in
-                NavigationLink(destination: MissionView(mission: mission, astronauts: self.astronauts)){
-                    Image(mission.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 44, height: 44)
-                
-                    VStack(alignment: .leading) {
-                        Text(mission.displayName)
-                            .font(.headline)
-                        Text(mission.launchDate ?? "N/A")
+        NavigationView {
+                List(missions) { mission in
+                    NavigationLink(destination: MissionView(mission: mission, astronauts: self.astronauts)){
+                        Image(mission.image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 44, height: 44)
+                        
+                        VStack(alignment: .leading) {
+                            Text(mission.displayName)
+                                .font(.headline)
+                            Text(mission.launchDate ?? "N/A")
+                        }
                     }
                 }
-            }
-            .navigationBarTitle("Moonshot")
+                .navigationBarTitle("Moonshot", displayMode: .inline)
         }
         
     }

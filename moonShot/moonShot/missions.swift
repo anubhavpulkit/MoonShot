@@ -8,11 +8,9 @@
 import Foundation
 import SwiftUI
 
-
-
 struct Mission: Codable, Identifiable {
     
-    struct CrewRole: Codable{
+    struct CrewRole: Codable {
         var name: String
         var role: String
     }
